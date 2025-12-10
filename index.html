@@ -1,24 +1,261 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Primera Página Web</title>
+    <title>Portfolio - Inici</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILS CSS (DISSENY) --- */
+
+        :root {
+            --bg-color: #000000;      /* Fons Negre */
+            --text-main: #ffffff;     /* Text Blanc */
+            --text-secondary: #cccccc; /* Text Gris */
+            --accent: #ffffff;        /* Detalls en blanc */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif; /* Lletra pel text normal */
+            overflow-x: hidden;
+        }
+
+        /* Títols elegants (Serif) */
+        h1, h2, h3, .logo-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- HEADER / MENÚ --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 10%;
+        }
+
+        .logo-text {
+            font-size: 2rem; /* "NOM" gran */
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 1rem;
+            text-transform: lowercase; /* tot en minúscules com al disseny */
+            border-bottom: 1px solid transparent;
+        }
+
+        nav a:hover, nav a.active {
+            border-bottom: 1px solid var(--accent);
+        }
+
+        /* --- HERO SECTION (LA PRESENTACIÓ) --- */
+        .hero {
+            display: flex;
+            align-items: center; /* Centrat verticalment */
+            justify-content: center;
+            gap: 80px; /* Separació entre foto i text */
+            min-height: 70vh;
+            padding: 0 15%;
+        }
+
+        .hero-img img {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0.9;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem; /* Títol gegant */
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: justify; /* Text justificat com a la imatge */
+        }
+
+        /* Botó de contacte (opcional, estil modern) */
+        .btn {
+            display: inline-block;
+            padding: 10px 30px;
+            border: 1px solid var(--text-main);
+            background: transparent;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+        }
+        .btn:hover { background: var(--text-main); color: var(--bg-color); }
+
+        /* --- PROJECTES DESTACATS --- */
+        .destacats {
+            padding: 80px 15%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dues columnes */
+            gap: 60px; /* Espai gran entre ells */
+        }
+
+        .project-card {
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            color: var(--text-main);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 400px; /* Alçada fixa de les fotos */
+            overflow: hidden;
+            border: 1px solid #333; /* Borde subtil */
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* Efecte Zoom al passar el ratolí */
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Botó petit sota la foto */
+        .card-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--text-secondary);
+            padding-bottom: 5px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 50px;
+            padding: 40px 10%;
+            text-align: center;
+            border-top: 1px solid #333; /* Línia blanca/grisa a dalt */
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        /* --- RESPONSIVE (Mòbil) --- */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; gap: 40px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .projects-grid { grid-template-columns: 1fr; } /* Una columna al mòbil */
+        }
+    </style>
 </head>
 <body>
 
-    <h1>¡Hola, Mundo!</h1>
+    <header>
+        <div class="logo-text">NOM</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">index</a></li>
+                <li><a href="projectes.html">projectes</a></li> <li><a href="contacte.html">contacte</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <p>Esta es una estructura básica de HTML. Aquí puedes escribir tu contenido.</p>
+    <main>
 
-    <h2>Mis cosas favoritas:</h2>
-    <ul>
-        <li>Programar</li>
-        <li>Aprender tecnología</li>
-        <li>El café</li>
-    </ul>
+        <section class="hero">
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1544256718-3bcf237f38b2?auto=format&fit=crop&w=800&q=80" alt="Paisatge abstracte">
+            </div>
 
-    <p>Visita <a href="https://www.google.com" target="_blank">Google</a> para más información.</p>
+            <div class="hero-text">
+                <h1>I'm Nom Cognom<br>A Product Designer<br>based in Spain</h1>
+                <p>
+                    ñlqwaadmqñhfakfjjfwjfwñqñfwjñjñfjwqñfñwfñjwñfñlwj
+                    fñwqñfñjwjfñlqwjfñfjñwqjfñwqjñfwqjñlfjwqñljfñlwq
+                    ñlfwqñksgñaeñlgñlawkfñlkwqañlfkñwqakfñkwqañkfñw
+                    (Aquí posaràs el teu text real de presentació).
+                </p>
+                <a href="contacte.html" class="btn">Contactar</a>
+            </div>
+        </section>
+
+        <section class="destacats">
+            <h2 class="section-title">Projectes Destacats</h2>
+
+            <div class="projects-grid">
+
+                <article class="project-card">
+                    <h3 class="project-title">Projecto 1</h3>
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1467232004587-fc0413277451?auto=format&fit=crop&w=800&q=80" alt="Projecte 1">
+                    </div>
+                    <a href="detall-projecte.html" class="card-link">Veure Detalls</a>
+                </article>
+
+                <article class="project-card">
+                    <h3 class="project-title">Projecto 2</h3>
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=800&q=80" alt="Projecte 2">
+                    </div>
+                    <a href="detall-projecte.html" class="card-link">Veure Detalls</a>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p class="footer-text">© 2025 [El Vostre Nom]. Tots els drets reservats.</p>
+    </footer>
 
 </body>
 </html>
