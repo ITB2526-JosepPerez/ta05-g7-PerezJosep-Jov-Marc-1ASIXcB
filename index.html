@@ -40,10 +40,24 @@
 
         /* --- HEADER / MENÚ --- */
         header {
+            /* --- PART NOVA: AIXÒ FA MÀGIA --- */
+            position: fixed;        /* Es queda clavat a la pantalla */
+            top: 0;                 /* A dalt de tot */
+            left: 0;
+            width: 100%;            /* Ocupa tot l'ample */
+            z-index: 1000;          /* Assegura que estigui SOBRE les fotos */
+
+            /* Efecte cristall (Innovació) */
+            background-color: rgba(0, 0, 0, 0.85); /* Negre al 85% d'opacitat */
+            backdrop-filter: blur(10px);           /* Difumina el que passa per sota */
+            border-bottom: 1px solid #333;         /* Una línia fina a sota */
+
+            /* --- PART QUE JA TENIES (Mantenir) --- */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 10%;
+            padding: 20px 10%;      /* He reduït una mica l'alçada perquè no molesti */
+            transition: 0.3s;
         }
 
         .logo-text {
