@@ -1,10 +1,419 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfoli - Els meus Projectes</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILS GENERALS --- */
+        :root {
+            --bg-color: #000000;
+            --text-main: #ffffff;
+            --text-secondary: #cccccc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-text { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 15%;
+        }
+
+        .logo-text { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
+        nav ul { display: flex; gap: 30px; }
+        nav a { font-size: 0.9rem; text-transform: lowercase; opacity: 0.8; }
+        nav a:hover, nav a.active { opacity: 1; border-bottom: 1px solid white; }
+
+        /* --- MAIN --- */
+        main {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+
+        .page-header { margin-bottom: 60px; text-align: left; }
+        .page-header h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 400; }
+        .page-header p { color: var(--text-secondary); font-size: 1.1rem; }
+
+        /* --- FILTRES (ESTÁTICO) --- */
+        .filters-container {
+            text-align: center;
+            margin-bottom: 60px;
+            position: static;
+            background: transparent;
+            padding: 0;
+            border: none;
+        }
+
+        .filter-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .filter-btn {
+            background: none; border: none; color: var(--text-secondary);
+            font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover { color: white; background-color: #222; }
+        .filter-btn.active { color: black; background-color: white; font-weight: 600; }
+
+        /* --- GRID PROJECTES --- */
+        .projects-grid-page {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 80px;
+            row-gap: 100px;
+        }
+
+        .project-item { text-align: center; transition: all 0.4s ease; }
+        .project-item.hide { display: none; }
+        .project-item.show { animation: fadeIn 0.5s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-item h3 { font-size: 1.5rem; margin-bottom: 5px; font-weight: 400; margin-top: 15px; }
+        .project-category { color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9rem; }
+
+        .tags-container {
+            display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 0.7rem; border: 1px solid #333; padding: 3px 10px; border-radius: 20px; color: #888; text-transform: uppercase;
+        }
+
+        .project-img-box {
+            width: 100%; height: 300px;
+            overflow: hidden; background-color: #222; border-radius: 4px;
+        }
+        .project-img-box img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
+        }
+        .project-img-box:hover img { transform: scale(1.05); }
+
+        /* --- CTA --- */
+        .cta-section { text-align: center; padding: 80px 15%; background-color: #0a0a0a; margin-top: 80px; }
+        .cta-section h2 { font-size: 2rem; margin-bottom: 20px; }
+        .btn-cta { display: inline-block; padding: 12px 35px; border: 1px solid white; color: white; margin-top: 20px; }
+        .btn-cta:hover { background: white; color: black; }
+
+        footer { margin-top: 0; padding: 40px 15%; text-align: center; border-top: 1px solid #333; color: #666; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            header, main, footer, .cta-section { padding-left: 5%; padding-right: 5%; }
+            .projects-grid-page { grid-template-columns: 1fr; gap: 60px; }
+        }
+    </style>
 </head>
 <body>
+
+    <header>
+        <div class="logo-text">NOM</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">index</a></li>
+                <li><a href="projectes.html" class="active">projectes</a></li>
+                <li><a href="contacte.html">contacte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="page-header">
+            <h1>Els meus Projectes</h1>
+            <p>Una selecció dels meus millors treballs organitzats per àrees.</p>
+        </section>
+
+        <div class="filters-container">
+            <span class="filter-label">Explora per categoria:</span>
+            <div class="filter-links">
+                <button class="filter-btn active" data-filter="all">Tots</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="app">Apps</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="data">Data & AI</button>
+            </div>
+        </div>
+
+        <section class="projects-grid-page">
+
+            <article class="project-item" data-category="web">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?w=500" alt="P1"></a></div>
+                <h3>Landing Page</h3>
+                <p class="project-category">Disseny Web</p>
+                <div class="tags-container"><span class="tag">Figma</span><span class="tag">HTML</span></div>
+            </article>
+
+            <article class="project-item" data-category="app">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500" alt="P2"></a></div>
+                <h3>Fitness App</h3>
+                <p class="project-category">Aplicació Mòbil</p>
+                <div class="tags-container"><span class="tag">React Native</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500" alt="P3"></a></div>
+                <h3>Eco Brand</h3>
+                <p class="project-category">Identitat Corporativa</p>
+                <div class="tags-container"><span class="tag">Illustrator</span></div>
+            </article>
+
+            <article class="project-item" data-category="app">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500" alt="P4"></a></div>
+                <h3>Task Manager</h3>
+                <p class="project-category">App iOS</p>
+                <div class="tags-container"><span class="tag">Swift</span></div>
+            </article>
+
+            <article class="project-item" data-category="web">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500" alt="P5"></a></div>
+                <h3>Portfolio Template</h3>
+                <p class="project-category">UI Kit Web</p>
+                <div class="tags-container"><span class="tag">Figma</span></div>
+            </article>
+
+            <article class="project-item" data-category="data">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500" alt="P6"></a></div>
+                <h3>API Server</h3>
+                <p class="project-category">Backend API</p>
+                <div class="tags-container"><span class="tag">Python</span><span class="tag">Flask</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="tetris.html"><img src="https://images.unsplash.com/photo-1555862877-523736550400?w=500" alt="P7"></a></div>
+                <h3>Magazine Cover</h3>
+                <p class="project-category">Disseny Editorial</p>
+                <div class="tags-container"><span class="tag">Indesign</span></div>
+            </article>
+
+            <article class="project-item" data-category="web">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500" alt="P8"></a></div>
+                <h3>Corporate Site</h3>
+                <p class="project-category">Frontend</p>
+                <div class="tags-container"><span class="tag">Vue.js</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?w=500" alt="P9"></a></div>
+                <h3>Tech Product</h3>
+                <p class="project-category">Product Design</p>
+                <div class="tags-container"><span class="tag">Sketch</span></div>
+            </article>
+
+            <article class="project-item" data-category="web">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1550439062-609e1531270e?w=500" alt="P10"></a></div>
+                <h3>Social Network</h3>
+                <p class="project-category">Fullstack</p>
+                <div class="tags-container"><span class="tag">MERN</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=500" alt="P11"></a></div>
+                <h3>Coffee Pack</h3>
+                <p class="project-category">Packaging</p>
+                <div class="tags-container"><span class="tag">Photoshop</span></div>
+            </article>
+
+            <article class="project-item" data-category="data">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=500" alt="P12"></a></div>
+                <h3>Analytics Dashboard</h3>
+                <p class="project-category">Data Science</p>
+                <div class="tags-container"><span class="tag">Python</span><span class="tag">Pandas</span></div>
+            </article>
+
+            <article class="project-item" data-category="web">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500" alt="P13"></a></div>
+                <h3>Agency Site</h3>
+                <p class="project-category">Web Design</p>
+                <div class="tags-container"><span class="tag">Figma</span></div>
+            </article>
+
+            <article class="project-item" data-category="data">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500" alt="P14"></a></div>
+                <h3>Secure Login</h3>
+                <p class="project-category">Security</p>
+                <div class="tags-container"><span class="tag">Cyber</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500" alt="P15"></a></div>
+                <h3>Instagram Kit</h3>
+                <p class="project-category">Social Media</p>
+                <div class="tags-container"><span class="tag">Canva</span></div>
+            </article>
+
+            <article class="project-item" data-category="data">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=500" alt="P16"></a></div>
+                <h3>Container System</h3>
+                <p class="project-category">DevOps</p>
+                <div class="tags-container"><span class="tag">Docker</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1557053503-0c252e5c8093?w=500" alt="P17"></a></div>
+                <h3>Minimal Logo</h3>
+                <p class="project-category">Logo Design</p>
+                <div class="tags-container"><span class="tag">Illustrator</span></div>
+            </article>
+
+            <article class="project-item" data-category="web">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=500" alt="P18"></a></div>
+                <h3>Shoe Store</h3>
+                <p class="project-category">E-commerce</p>
+                <div class="tags-container"><span class="tag">Shopify</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?w=500" alt="P19"></a></div>
+                <h3>New Typeface</h3>
+                <p class="project-category">Typography</p>
+                <div class="tags-container"><span class="tag">FontLab</span></div>
+            </article>
+
+            <article class="project-item" data-category="data">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500" alt="P20"></a></div>
+                <h3>Scrum Board</h3>
+                <p class="project-category">Management Tool</p>
+                <div class="tags-container"><span class="tag">Agile</span></div>
+            </article>
+
+             <article class="project-item" data-category="web">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=500" alt="P21"></a></div>
+                <h3>User Research</h3>
+                <p class="project-category">UX Research</p>
+                <div class="tags-container"><span class="tag">Miro</span></div>
+            </article>
+
+            <article class="project-item" data-category="data">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500" alt="P22"></a></div>
+                <h3>Penetration Test</h3>
+                <p class="project-category">Cybersecurity</p>
+                <div class="tags-container"><span class="tag">Kali</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?w=500" alt="P23"></a></div>
+                <h3>Intro Video</h3>
+                <p class="project-category">Motion Graphics</p>
+                <div class="tags-container"><span class="tag">After Effects</span></div>
+            </article>
+
+            <article class="project-item" data-category="data">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=500" alt="P24"></a></div>
+                <h3>Cloud Migration</h3>
+                <p class="project-category">Cloud</p>
+                <div class="tags-container"><span class="tag">AWS</span></div>
+            </article>
+
+             <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500" alt="P25"></a></div>
+                <h3>Event Poster</h3>
+                <p class="project-category">Poster Design</p>
+                <div class="tags-container"><span class="tag">Indesign</span></div>
+            </article>
+
+            <article class="project-item" data-category="data">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1643554078755-129043900000?w=500" alt="P26"></a></div>
+                <h3>Chat Bot</h3>
+                <p class="project-category">AI Bot</p>
+                <div class="tags-container"><span class="tag">Python</span></div>
+            </article>
+
+            <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500" alt="P27"></a></div>
+                <h3>Rebranding</h3>
+                <p class="project-category">Brand Identity</p>
+                <div class="tags-container"><span class="tag">Corel</span></div>
+            </article>
+
+            <article class="project-item" data-category="app">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500" alt="P28"></a></div>
+                <h3>Mobile Game</h3>
+                <p class="project-category">Game Dev</p>
+                <div class="tags-container"><span class="tag">Unity</span></div>
+            </article>
+
+             <article class="project-item" data-category="branding">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=500" alt="P29"></a></div>
+                <h3>Hand Sketch</h3>
+                <p class="project-category">Sketching</p>
+                <div class="tags-container"><span class="tag">Paper</span></div>
+            </article>
+
+            <article class="project-item" data-category="web">
+                <div class="project-img-box"><a href="detall-projecte.html"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500" alt="P30"></a></div>
+                <h3>Final Project</h3>
+                <p class="project-category">Web Development</p>
+                <div class="tags-container"><span class="tag">HTML/CSS</span></div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <section class="cta-section">
+        <h2>T'ha agradat el que has vist?</h2>
+        <p>Estic disponible per a nous projectes o pràctiques d'empresa.</p>
+        <a href="contacte.html" class="btn-cta">Contactar ara</a>
+    </section>
+
+    <footer>
+        <p>© 2025 [El Vostre Nom]. Tots els drets reservats.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projects = document.querySelectorAll('.project-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const filterValue = button.getAttribute('data-filter');
+                    projects.forEach(project => {
+                        if (filterValue === 'all' || project.getAttribute('data-category') === filterValue) {
+                            project.classList.remove('hide');
+                            project.classList.add('show');
+                        } else {
+                            project.classList.add('hide');
+                            project.classList.remove('show');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

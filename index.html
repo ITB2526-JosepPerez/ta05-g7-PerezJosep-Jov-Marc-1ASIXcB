@@ -44,19 +44,11 @@
 
         /* --- HEADER / MENÚ SUPERIOR --- */
         header {
-            position: fixed;        /* Es queda clavat a dalt */
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;          /* Sempre per sobre de tot */
-            background-color: rgba(0, 0, 0, 0.85); /* Fons negre semitransparent */
-            backdrop-filter: blur(10px);           /* Efecte difuminat elegant */
-            border-bottom: 1px solid #333;         /* Línia subtil a sota */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 10%;      /* Espaiat interior */
-            transition: 0.3s;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 15%;
         }
 
         .logo-text {
@@ -307,7 +299,8 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="active">index</a></li>
-                <li><a href="projectes.html">projectes</a></li> <li><a href="contacte.html">contacte</a></li>
+                <li><a href="./pages/pagina.html">projectes</a></li>
+                <li><a href="./pages/contacte.html">contacte</a></li>
             </ul>
         </nav>
     </header>
